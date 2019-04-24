@@ -1,0 +1,55 @@
+Virtual User Script started at: 4/24/2019 1:07:30 PM
+Starting action vuser_init.
+Web Services replay version 12.55.0 for Windows 7; Toolkit: "NotDefined"; build 911
+Run-Time Settings file: "C:\Users\390470\Documents\VuGen\Scripts\WeatherData\\default.cfg"
+Vuser directory: "C:\Users\390470\Documents\VuGen\Scripts\WeatherData"
+Vuser output directory: "C:\Users\390470\Documents\VuGen\Scripts\WeatherData\"
+LOCAL start date/time : 2019-04-24 13:07:32
+Ending action vuser_init.
+Running Vuser...
+Starting iteration 1.
+Maximum number of concurrent connections per server: 6  	[MsgId: MMSG-26989]
+Starting action Action.
+Action.c(4): Notify: Transaction "WeatherApi" started.
+Action.c(6): web_submit_data("web_submit_data") started  	[MsgId: MMSG-26355]
+Action.c(6): t=14683ms: 124-byte response headers for "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22?" (RelFrameId=1, Internal ID=1)
+Action.c(6):     HTTP/1.1 200 Connection established\r\n
+Action.c(6):     Date: Wed, 24 Apr 2019 07:37:39 GMT\r\n
+Action.c(6):     Proxy-Connection: Keep-Alive\r\n
+Action.c(6):     Via: 1.1 KOL_GTP\r\n
+Action.c(6):     \r\n
+Action.c(6): t=16472ms: 447-byte response headers for "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22?" (RelFrameId=1, Internal ID=1)
+Action.c(6):     HTTP/1.1 200 OK\r\n
+Action.c(6):     Server: openresty/1.9.7.1\r\n
+Action.c(6):     Date: Wed, 24 Apr 2019 07:37:40 GMT\r\n
+Action.c(6):     Content-Type: application/json; charset=utf-8\r\n
+Action.c(6):     X-Frame-Options: SAMEORIGIN\r\n
+Action.c(6):     X-XSS-Protection: 1; mode=block\r\n
+Action.c(6):     X-Content-Type-Options: nosniff\r\n
+Action.c(6):     ETag: W/"e70c27085ed41de5321252b16c9582fe"\r\n
+Action.c(6):     Cache-Control: max-age=0, private, must-revalidate\r\n
+Action.c(6):     X-Request-Id: 4007de02-ed3c-4102-b94d-b9e4aa8a1e62\r\n
+Action.c(6):     X-Runtime: 0.000973\r\n
+Action.c(6):     Content-Length: 459\r\n
+Action.c(6):     Age: 0\r\n
+Action.c(6):     Via: HTTPS/1.1 KOL_GTP\r\n
+Action.c(6):     \r\n
+Action.c(6): t=16587ms: 459-byte response body for "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22?" (RelFrameId=1, Internal ID=1)
+Action.c(6):     {"coord":{"lon":-0.13,"lat":51.51},"weather":[{"id":300,"main":"Drizzle","description":"li
+Action.c(6):     ght intensity drizzle","icon":"09d"}],"base":"stations","main":{"temp":280.32,"pressure":1
+Action.c(6):     012,"humidity":81,"temp_min":279.15,"temp_max":281.15},"visibility":10000,"wind":{"speed":
+Action.c(6):     4.1,"deg":80},"clouds":{"all":90},"dt":1485789600,"sys":{"type":1,"id":5091,"message":0.01
+Action.c(6):     03,"country":"GB","sunrise":1485762037,"sunset":1485794875},"id":2643743,"name":"London","
+Action.c(6):     cod":200}
+Action.c(6): HTML parsing not performed for Content-Type "application/json" ("ParseHtmlContentType" Run-Time Setting is "TEXT"). URL="https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22?"  	[MsgId: MMSG-26548]
+Action.c(6): web_submit_data("web_submit_data") was successful, 459 body bytes, 571 header bytes  	[MsgId: MMSG-26386]
+Action.c(14): Notify: Transaction "WeatherApi" ended with a "Pass" status (Duration: 3.8754 Wasted Time: 1.3537).
+Ending action Action.
+Ending iteration 1.
+Ending Vuser...
+Starting action vuser_end.
+Ending action vuser_end.
+Vuser Terminated.
+Warning: Extension LrXml.dll reports error -1 on call to function ExtPerThreadTerminate
+Warning: Vuser failed to terminate extension.
+Vuser 0 (thread 7248), ended OK."

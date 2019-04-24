@@ -1,0 +1,9 @@
+-+
+-DCCI
+-D_IDA_XL
+-DWINNT
+-IC:\Users\390470\Documents\VuGen\Scripts\WeatherData
+-IC:\Program Files (x86)\HPE\Virtual User Generator\include
+-ec:\users\390470\documents\vugen\scripts\weatherdata\\logfile.log
+c:\users\390470\documents\vugen\scripts\weatherdata\\combined_WeatherData.c
+c:\users\390470\documents\vugen\scripts\weatherdata\\pre_cci.c
