@@ -1,62 +1,46 @@
 #!/usr/bin/env bash
-set -e -x
+set -x
+
+export DISPLAY=:99
+#chown cognizant:cognizant /etc/init.d/
+bash /etc/init.d/xvfb start
 ls -las
 
-PASSED_TESTS=1
-TOTAL_TESTS=1
+echo "Functional test cases..."
 
-#TESTDIR="tests"
-#if [ -d "$TESTDIR" ]; then	
-#	chmod 777 tests
-#	rm -rf tests
-#	mkdir tests
+mkdir tests
+chmod 777 tests
+ls -ltr
+
+cd html-source
+
+npm install grunt --save-dev
+npm install jasmine-reporters --save-dev
+#npm install
+
+echo "Webdriver starting..."
+
+nohup webdriver-manager start &
+sleep 5
+
+echo "Functional test cases execution staring ..."
+protractor protractor.conf.js
+
+#if [ $? -ne 0 ]; then  
+#	TEST_FAILURE=1
 #fi
 
-if [ -f tests ]; then
-    chmod 777 tests
-    rm tests
-    echo "Deleted the file"
-fi
+echo "Executing unit test cases..."
+#grunt runee --force
 
-if [ -d tests ]; then
-    chmod -R 777 tests
-    rm -rf tests
-    echo "Deleted the folder"
-fi
-
-
-ls -las
-mkdir tests
-ls -las
-
+cd ../src/main/webapp/WEB-INF/static/resources/js/tests/e2e/testresults
+ls -ltr
+cp *.xml ../../../../../../../../../../tests
 ls -ltr
 
-cd src/test/api
-
-echo "Installing newman ..."
-npm install -g newman
-echo "Installed newman ..."
-
-newman run collections/git.postman_collection.json --environment collections/newman-env.postman_environment.json --reporters cli,junit,html --reporter-junit-export testresults/unformatted/xmlOut.xml --reporter-html-export testresults/unformatted/htmlOut.html
-
-if [ $? -ne 0 ]; then  
-	TEST_FAILURE = 1
-fi
-
-python add_attr.py -f testresults/unformatted/*.xml
-cd testresults/junit
-chmod 777 temp.txt
-
-ls -ltr
-rm temp.txt
-
+cd ../../../../../../../../../../
 ls -ltr
 
-cp *.xml ../../../../../tests
-
-
-cd ../../../../../
-pwd
 cd tests
 ls -ltr
 
@@ -64,19 +48,3 @@ ls -ltr
 #	echo "Exiting with exit code 1..."
 #	exit 1
 #fi
-
-
-
-THRESHOLD=$API_TEST_THRESHOLD
-echo "Threshold set for Pass Rate is "$THRESHOLD
-PASSED_TESTS_PERCENT=$((PASSED_TESTS*100))
-PASS_RATE=$(( PASSED_TESTS_PERCENT / TOTAL_TESTS ))
-echo "Pass Rate is "$PASS_RATE
-
-if [ "$PASS_RATE" -ge "$THRESHOLD" ]
-then
-	echo "Pass Rate:"$PASS_RATE "is greater than or equal to expected Threshold:"$THRESHOLD ".ci-cd pipeline will continue to execute further"	
-else
-	echo "Pass Rate:"$PASS_RATE "is less than expected Threshold:"$THRESHOLD ".ci-cd pipeline will not continue to execute further"
-	exit 1
-fi
